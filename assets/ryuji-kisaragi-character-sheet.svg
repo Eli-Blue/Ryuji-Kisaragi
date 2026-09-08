@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Ryuji Kisaragi character design sheet</title>
+  <desc id="desc">Front and back orthographic views of a lean monk-warrior with a topknot, torn sleeveless gi, wrapped hands, forearm guards, prayer beads, bandaged shins, and bare feet, with costume detail callouts.</desc>
+  <defs>
+    <linearGradient id="paper" x2="0" y2="1"><stop stop-color="#f4f1ea"/><stop offset="1" stop-color="#e4e0d7"/></linearGradient>
+    <linearGradient id="cloth" x2="0" y2="1"><stop stop-color="#30383c"/><stop offset="1" stop-color="#171d21"/></linearGradient>
+    <linearGradient id="metal" x2="1" y2="1"><stop stop-color="#9aa6a8"/><stop offset=".45" stop-color="#3d474b"/><stop offset="1" stop-color="#151b1e"/></linearGradient>
+    <filter id="shadow"><feGaussianBlur stdDeviation="7"/></filter>
+    <style>
+      .ink{stroke:#161b1d;stroke-width:5;stroke-linejoin:round;stroke-linecap:round}
+      .fine{fill:none;stroke:#687276;stroke-width:2}
+      .guide{fill:none;stroke:#aeb5b2;stroke-width:2;stroke-dasharray:8 10}
+      .label{font:700 19px Arial,sans-serif;letter-spacing:2px;fill:#263033}
+      .small{font:13px Arial,sans-serif;letter-spacing:1px;fill:#657074}
+      .call{fill:none;stroke:#ad5f42;stroke-width:2}
+      .dot{fill:#ad5f42}
+    </style>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#paper)"/>
+  <path d="M70 82H1530M70 920H1530" stroke="#b6bbb6" stroke-width="2"/>
+  <text x="75" y="55" class="label" font-size="28">RYUJI KISARAGI</text>
+  <text x="1530" y="55" text-anchor="end" class="small">MONK-WARRIOR / CLOSE-RANGE FIGHTER / TURNAROUND 01</text>
+
+  <g opacity=".55">
+    <path class="guide" d="M345 135V850M735 135V850M1050 135V850"/>
+    <ellipse cx="345" cy="850" rx="145" ry="17" fill="#9da39f" filter="url(#shadow)"/>
+    <ellipse cx="735" cy="850" rx="145" ry="17" fill="#9da39f" filter="url(#shadow)"/>
+  </g>
+  <text x="345" y="895" text-anchor="middle" class="label">FRONT / ORTHOGRAPHIC</text>
+  <text x="735" y="895" text-anchor="middle" class="label">BACK / ORTHOGRAPHIC</text>
+
+  <!-- front view -->
+  <g transform="translate(345 0)">
+    <!-- topknot and head -->
+    <path class="ink" fill="#171c1f" d="M-36 205Q-30 170 0 165Q30 170 36 205L24 245H-24Z"/>
+    <path class="ink" fill="#1c2225" d="M-18 169Q-7 125 13 142Q31 157 13 181Z"/>
+    <path class="ink" fill="#171c1f" d="M-5 143Q12 99 29 125Q33 151 14 169Z"/>
+    <path class="ink" fill="#b78f78" d="M-31 208Q0 192 31 208L25 281Q0 300-25 281Z"/>
+    <path d="M-28 222Q-10 232 28 220M-20 263Q0 273 20 263" class="fine"/>
+    <path d="M-20 237l13 2M6 239l14-3" class="ink"/>
+    <path d="M-24 218l12-4M11 214l12 4" class="ink" fill="none"/>
+    <!-- neck and torso -->
+    <path class="ink" fill="#b78f78" d="M-15 278H15L23 309H-23Z"/>
+    <path class="ink" fill="url(#cloth)" d="M-80 304Q-52 288-20 304L0 324L20 304Q52 288 80 304L102 453Q71 491 0 494Q-71 491-102 453Z"/>
+    <path d="M-20 304L0 324L20 304M-4 326V467M-83 386Q0 410 83 386" class="fine"/>
+    <!-- torn shoulder edges -->
+    <path class="ink" fill="#252d30" d="M-81 304l-39 24 19 36 18-12 7 19 15-18 9 17 15-27z"/>
+    <path class="ink" fill="#252d30" d="M81 304l39 24-19 36-18-12-7 19-15-18-9 17-15-27z"/>
+    <!-- arms, wraps, guards -->
+    <path class="ink" fill="#b78f78" d="M-112 337Q-137 390-142 449L-117 457Q-94 402-73 365Z"/>
+    <path class="ink" fill="#b78f78" d="M112 337Q137 390 142 449L117 457Q94 402 73 365Z"/>
+    <path class="ink" fill="url(#metal)" d="M-142 422l28-4 17 59-30 9zM142 422l-28-4-17 59 30 9z"/>
+    <path class="ink" fill="#d1b59a" d="M-150 467q20-14 42 2l-7 49q-18 17-38 0zM150 467q-20-14-42 2l7 49q18 17 38 0z"/>
+    <path d="M-146 480l31 9M-148 494l31 9M146 480l-31 9M148 494l-31 9" class="fine"/>
+    <!-- beads on right wrist -->
+    <g fill="#b87943" stroke="#4a3025" stroke-width="2"><circle cx="141" cy="475" r="5"/><circle cx="145" cy="488" r="5"/><circle cx="148" cy="501" r="5"/><circle cx="150" cy="514" r="5"/></g>
+    <!-- belt and trousers -->
+    <path class="ink" fill="#a66a46" d="M-83 452Q0 469 83 452L80 482Q0 500-80 482Z"/>
+    <path class="ink" fill="#252d30" d="M-74 478L-8 485-18 650-70 650-88 535zM74 478L8 485l18 165h52l18-115z"/>
+    <path class="ink" fill="#b78f78" d="M-68 642h51l-8 66-44 0zM68 642h-51l8 66h44z"/>
+    <!-- bandaged shins and feet -->
+    <path class="ink" fill="#e0d5c0" d="M-69 700h44l4 94-47 0zM69 700h-44l-4 94 47 0z"/>
+    <path d="M-67 718l43 13M-67 742l44 13M67 718l-43 13M67 742l-44 13" class="fine"/>
+    <path class="ink" fill="#b78f78" d="M-70 792q26-9 50 3l20 28q-40 24-78 1zM70 792q-26-9-50 3l-20 28q40 24 78 1z"/>
+  </g>
+
+  <!-- back view -->
+  <g transform="translate(735 0)">
+    <path class="ink" fill="#171c1f" d="M-36 205Q-30 170 0 165Q30 170 36 205L24 245H-24Z"/>
+    <path class="ink" fill="#1c2225" d="M-18 169Q-7 125 13 142Q31 157 13 181Z"/>
+    <path class="ink" fill="#171c1f" d="M-5 143Q12 99 29 125Q33 151 14 169Z"/>
+    <path class="ink" fill="#b78f78" d="M-31 208Q0 192 31 208L25 281Q0 300-25 281Z"/>
+    <path class="ink" fill="#b78f78" d="M-15 278H15L23 309H-23Z"/>
+    <path class="ink" fill="url(#cloth)" d="M-80 304Q-52 288-20 304L0 324L20 304Q52 288 80 304L102 453Q71 491 0 494Q-71 491-102 453Z"/>
+    <path d="M0 325V465M-72 350Q0 379 72 350M-74 431Q0 452 74 431" class="fine"/>
+    <path class="ink" fill="#252d30" d="M-81 304l-39 24 19 36 18-12 7 19 15-18 9 17 15-27zM81 304l39 24-19 36-18-12-7 19-15-18-9 17-15-27z"/>
+    <path class="ink" fill="#b78f78" d="M-112 337Q-137 390-142 449L-117 457Q-94 402-73 365ZM112 337Q137 390 142 449L117 457Q94 402 73 365Z"/>
+    <path class="ink" fill="url(#metal)" d="M-142 422l28-4 17 59-30 9zM142 422l-28-4-17 59 30 9z"/>
+    <path class="ink" fill="#d1b59a" d="M-150 467q20-14 42 2l-7 49q-18 17-38 0zM150 467q-20-14-42 2l7 49q18 17 38 0z"/>
+    <path class="ink" fill="#a66a46" d="M-83 452Q0 469 83 452L80 482Q0 500-80 482Z"/>
+    <path class="ink" fill="#252d30" d="M-74 478L-8 485-18 650-70 650-88 535zM74 478L8 485l18 165h52l18-115z"/>
+    <path class="ink" fill="#e0d5c0" d="M-69 700h44l4 94-47 0zM69 700h-44l-4 94 47 0z"/>
+    <path d="M-67 718l43 13M-67 742l44 13M67 718l-43 13M67 742l-44 13" class="fine"/>
+    <path class="ink" fill="#b78f78" d="M-70 792q26-9 50 3l20 28q-40 24-78 1zM70 792q-26-9-50 3l-20 28q40 24 78 1z"/>
+    <path d="M-40 365Q0 390 40 365" stroke="#ad5f42" stroke-width="4" fill="none"/>
+  </g>
+
+  <!-- details panel -->
+  <g transform="translate(1040 125)">
+    <text class="label" x="0" y="0">DETAIL CALLOUTS</text>
+    <text class="small" x="0" y="28">TEMPLE-WORN MATERIALS / PRACTICAL COMBAT WEAR</text>
+    <g transform="translate(0 60)">
+      <rect width="200" height="170" rx="4" fill="#d7d3ca" stroke="#aeb5b2" stroke-width="2"/>
+      <path class="ink" fill="#171c1f" d="M65 72Q72 30 103 39Q121 49 115 82L97 104H70Z"/>
+      <path class="ink" fill="#b78f78" d="M66 78q25-15 49 0l-5 51q-20 15-40 0z"/>
+      <path class="ink" fill="#1c2225" d="M77 42q6-43 27-19q21 22-4 44z"/>
+      <path d="M72 106q20 13 39 0M78 83l11 3M101 86l10-3" class="fine"/>
+      <text x="12" y="153" class="small">01  SHAVED SIDES + TOPKNOT</text>
+    </g>
+    <g transform="translate(230 60)">
+      <rect width="200" height="170" rx="4" fill="#d7d3ca" stroke="#aeb5b2" stroke-width="2"/>
+      <path class="ink" fill="url(#cloth)" d="M48 48l38 17 38-17 33 31-18 42-32-18-21 37-21-37-32 18-18-42z"/>
+      <path class="ink" fill="url(#metal)" d="M61 85l24-5 13 47-25 6z"/>
+      <path class="ink" fill="#d1b59a" d="M46 120q18-10 35 2l-5 26q-17 10-32-1z"/>
+      <text x="12" y="153" class="small">02  TORN GI / FOREARM GUARD</text>
+    </g>
+    <g transform="translate(0 260)">
+      <rect width="200" height="170" rx="4" fill="#d7d3ca" stroke="#aeb5b2" stroke-width="2"/>
+      <path class="ink" fill="#d1b59a" d="M76 47q24-12 48 0l-6 76q-18 15-36 0z"/>
+      <path d="M77 62l46 12M76 84l48 12M75 106l49 12" class="fine"/>
+      <g fill="#b87943" stroke="#4a3025" stroke-width="2"><circle cx="132" cy="58" r="8"/><circle cx="136" cy="78" r="8"/><circle cx="139" cy="98" r="8"/><circle cx="141" cy="118" r="8"/></g>
+      <text x="12" y="153" class="small">03  WRAPS + PRAYER BEADS</text>
+    </g>
+    <g transform="translate(230 260)">
+      <rect width="200" height="170" rx="4" fill="#d7d3ca" stroke="#aeb5b2" stroke-width="2"/>
+      <path class="ink" fill="#e0d5c0" d="M72 28h52l6 104H66z"/>
+      <path d="M68 52l57 18M67 80l59 18M68 108l58 18" class="fine"/>
+      <path class="ink" fill="#b78f78" d="M66 132q28-12 58 2l15 17q-44 17-88 0z"/>
+      <text x="12" y="153" class="small">04  SHIN BANDAGES / BARE FEET</text>
+    </g>
+    <path d="M-15 55L-43 36M-15 235L-43 264M215 235L454 262M215 55L454 36" class="call"/>
+    <circle cx="-43" cy="36" r="5" class="dot"/><circle cx="-43" cy="264" r="5" class="dot"/>
+    <circle cx="454" cy="36" r="5" class="dot"/><circle cx="454" cy="262" r="5" class="dot"/>
+  </g>
+  <text x="1040" y="690" class="label">DESIGN NOTES</text>
+  <text x="1040" y="724" class="small">LEAN, POWERFUL SILHOUETTE / CALM INTENSITY</text>
+  <text x="1040" y="750" class="small">SUBTLE TEMPLE PALETTE / BATTLE-WORN FINISH</text>
+  <text x="1040" y="776" class="small">BAJIQUAN + SHUAI JIAO CLOSE-RANGE LANGUAGE</text>
+  <path d="M1040 800h430" stroke="#ad5f42" stroke-width="3"/>
+  <text x="1530" y="875" text-anchor="end" class="small">ORIGINAL CHARACTER • DESIGN DEVELOPMENT SHEET</text>
+</svg>
