@@ -115,6 +115,8 @@ func _try_start_attack(attack_name: String) -> void:
 	attack_timer = ATTACKS[attack_name]["windup"]
 	hit_registry.clear()
 	velocity = Vector2.ZERO
+	attack_hitbox.monitoring = false
+	attack_hitbox.monitorable = false
 	_position_attack_hitbox()
 
 func _process_attack(delta: float) -> void:
@@ -142,6 +144,8 @@ func _process_attack(delta: float) -> void:
 			cooldowns[current_attack] = ATTACKS[current_attack]["cooldown"]
 			current_attack = ""
 			attack_phase = ""
+			attack_hitbox.monitoring = false
+			attack_hitbox.monitorable = false
 			state = CombatState.IDLE
 
 func _check_attack_hits() -> void:

@@ -63,3 +63,6 @@ func reset_for_round(spawn_position: Vector2) -> void:
 	_update_visuals()
 	health_changed.emit(health, max_health)
 	defeated_changed.emit(false)
+
+func is_defeated() -> bool:
+	return defeated

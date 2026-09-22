@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 
 	if player.has_method("get_state_label"):
 		var state_label: String = player.get_state_label()
-		if not dummy.defeated:
+		if not _dummy_is_defeated():
 			status_label.text = "State: %s" % state_label
 
 func _on_player_health_changed(current: int, maximum: int) -> void:
@@ -55,3 +55,6 @@ func reset_round() -> void:
 		dummy.reset_for_round(DUMMY_SPAWN)
 	status_label.text = "Round reset. Re-engage with pressure and throws."
 	status_lock_timer = 1.0
+
+func _dummy_is_defeated() -> bool:
+	return dummy.has_method("is_defeated") and dummy.is_defeated()
