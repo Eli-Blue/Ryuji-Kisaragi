@@ -68,6 +68,7 @@ var hit_registry: Dictionary = {}
 
 func _ready() -> void:
 	add_to_group("combat_target")
+	$Hurtbox.add_to_group("hurtbox")
 	health = max_health
 	defeated = false
 	health_changed.emit(health, max_health)
