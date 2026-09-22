@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bk1egpvwqpiu5"]
+
+[ext_resource type="Script" path="res://src/scripts/dummy.gd" id="1_kw0oh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hg7ir"]
+size = Vector2(30, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hurt"]
+size = Vector2(32, 46)
+
+[node name="Dummy" type="CharacterBody2D"]
+script = ExtResource("1_kw0oh")
+collision_layer = 2
+collision_mask = 0
+
+[node name="Body" type="Polygon2D" parent="."]
+color = Color(0.882353, 0.32549, 0.298039, 1)
+polygon = PackedVector2Array(-15, -24, 15, -24, 13, 24, -14, 24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hg7ir")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_hurt")

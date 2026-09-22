@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://d40xldj5a1hl0"]
+
+[ext_resource type="Script" path="res://src/scripts/player.gd" id="1_jtql1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jno8n"]
+size = Vector2(30, 52)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hitbox"]
+size = Vector2(34, 28)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_jtql1")
+collision_layer = 1
+collision_mask = 0
+
+[node name="Body" type="Polygon2D" parent="."]
+color = Color(0.247059, 0.584314, 0.890196, 1)
+polygon = PackedVector2Array(-14, -24, 16, -16, 12, 24, -18, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jno8n")
+
+[node name="AttackHitbox" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox"]
+shape = SubResource("RectangleShape2D_hitbox")
+position = Vector2(26, 0)

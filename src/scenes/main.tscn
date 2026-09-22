@@ -1,0 +1,85 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7a68ixbe3n71"]
+
+[ext_resource type="PackedScene" path="res://src/scenes/player.tscn" id="1_s3dq1"]
+[ext_resource type="PackedScene" path="res://src/scenes/dummy.tscn" id="2_e7gk8"]
+[ext_resource type="Script" path="res://src/scripts/main.gd" id="3_u6j4x"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("3_u6j4x")
+
+[node name="Arena" type="Polygon2D" parent="."]
+color = Color(0.0862745, 0.101961, 0.141176, 1)
+polygon = PackedVector2Array(0, 0, 1280, 0, 1280, 720, 0, 720)
+
+[node name="CenterLine" type="Line2D" parent="."]
+default_color = Color(0.231373, 0.270588, 0.356863, 1)
+width = 3.0
+points = PackedVector2Array(0, 360, 1280, 360)
+
+[node name="Player" parent="." instance=ExtResource("1_s3dq1")]
+position = Vector2(360, 360)
+
+[node name="Dummy" parent="." instance=ExtResource("2_e7gk8")]
+position = Vector2(860, 360)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Root" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerHealthLabel" type="Label" parent="HUD/Root"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 18.0
+offset_right = 180.0
+offset_bottom = 40.0
+text = "Ryuji"
+
+[node name="PlayerHealthBar" type="ProgressBar" parent="HUD/Root"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 42.0
+offset_right = 320.0
+offset_bottom = 66.0
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="DummyHealthLabel" type="Label" parent="HUD/Root"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 78.0
+offset_right = 180.0
+offset_bottom = 100.0
+text = "Training Dummy"
+
+[node name="DummyHealthBar" type="ProgressBar" parent="HUD/Root"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 102.0
+offset_right = 320.0
+offset_bottom = 126.0
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="StatusLabel" type="Label" parent="HUD/Root"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 142.0
+offset_right = 1240.0
+offset_bottom = 175.0
+text = "Close in and chain short-range pressure."
+
+[node name="ControlsLabel" type="Label" parent="HUD/Root"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 600.0
+offset_right = 1260.0
+offset_bottom = 710.0
+text = "WASD Move  |  J Light Strike  |  K Explosive Elbow  |  L Grapple/Throw  |  I Block  |  R Reset"
