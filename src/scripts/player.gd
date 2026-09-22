@@ -252,6 +252,16 @@ func reset_for_round(spawn_position: Vector2) -> void:
 func take_hit(hit_data: Dictionary) -> bool:
 	if defeated:
 		return false
+
+	if state == CombatState.ATTACK:
+		current_attack = ""
+		attack_phase = ""
+		attack_timer = 0.0
+		attack_hitbox.monitoring = false
+		attack_hitbox.monitorable = false
+		hit_registry.clear()
+		state = CombatState.IDLE
+
 	var damage := int(hit_data.get("damage", 0))
 	var knockback := hit_data.get("knockback", Vector2.ZERO) as Vector2
 	var is_guarding_front := false
