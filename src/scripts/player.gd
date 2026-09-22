@@ -161,7 +161,7 @@ func _process_attack(delta: float) -> void:
 
 func _check_attack_hits() -> void:
 	for area: Area2D in attack_hitbox.get_overlapping_areas():
-		if area == null or (not area.is_in_group("hurtbox") and not area.has_method("take_hit")):
+		if area == null or not area.is_in_group("hurtbox"):
 			continue
 		var target := _resolve_damage_target(area)
 		if target == null:
@@ -233,6 +233,7 @@ func reset_for_round(spawn_position: Vector2) -> void:
 	global_position = spawn_position
 	velocity = Vector2.ZERO
 	facing = Vector2.RIGHT
+	_update_facing_from_target()
 	defeated = false
 	state = CombatState.IDLE
 	current_attack = ""
