@@ -4,6 +4,7 @@ signal health_changed(current: int, maximum: int)
 
 const MOVE_SPEED := 260.0
 const BLOCK_SPEED_FACTOR := 0.45
+const DEFAULT_HITBOX_OFFSET := Vector2(26, 0)
 
 enum CombatState {
 	IDLE,
@@ -242,6 +243,7 @@ func reset_for_round(spawn_position: Vector2) -> void:
 		cooldowns[move_name] = 0.0
 	attack_hitbox.monitoring = false
 	attack_hitbox.monitorable = false
+	attack_shape.position = DEFAULT_HITBOX_OFFSET
 	health = max_health
 	health_changed.emit(health, max_health)
 
@@ -256,6 +258,9 @@ func take_hit(hit_data: Dictionary) -> bool:
 		is_guarding_front = approach_dot < -0.1
 	if state == CombatState.BLOCK and is_guarding_front:
 		damage = int(roundi(float(damage) * 0.4))
+		velocity = knockback * 0.35
+	else:
+		velocity = knockback
 	health = max(0, health - damage)
 	health_changed.emit(health, max_health)
 	if health == 0:
