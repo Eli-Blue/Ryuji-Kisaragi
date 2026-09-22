@@ -269,6 +269,8 @@ func take_hit(hit_data: Dictionary) -> bool:
 		velocity = knockback
 
 	if state == CombatState.ATTACK:
+		if current_attack != "":
+			cooldowns[current_attack] = float(ATTACKS[current_attack]["cooldown"])
 		current_attack = ""
 		attack_phase = ""
 		attack_timer = 0.0
