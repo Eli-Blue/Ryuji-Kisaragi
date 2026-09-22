@@ -103,8 +103,8 @@ func _process_movement_and_inputs() -> void:
 			return
 
 	var move_input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	if move_input.length() > 0.1:
-		facing = move_input.normalized()
+	if absf(move_input.x) > 0.05:
+		facing = Vector2(signf(move_input.x), 0.0)
 
 	var speed := MOVE_SPEED
 	if Input.is_action_pressed("block"):
@@ -206,11 +206,12 @@ func _update_facing_from_target() -> void:
 			closest_distance = distance
 			closest_direction = offset / distance
 	if closest_direction != Vector2.ZERO:
-		facing = closest_direction
+		if absf(closest_direction.x) > 0.01:
+			facing = Vector2(signf(closest_direction.x), 0.0)
 
 func _update_visuals() -> void:
 	var facing_sign := _facing_sign()
-	body.scale.x = facing_sign
+	body.scale = Vector2(facing_sign, 1.0)
 	if defeated:
 		body.color = Color(0.3, 0.3, 0.3, 1.0)
 		return
