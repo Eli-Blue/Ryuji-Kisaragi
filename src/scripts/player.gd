@@ -48,6 +48,7 @@ const ATTACKS := {
 @export var max_health := 100
 
 var health := max_health
+var defeated := false
 var state: CombatState = CombatState.IDLE
 var facing := Vector2.RIGHT
 var current_attack := ""
@@ -67,9 +68,16 @@ var hit_registry: Dictionary = {}
 func _ready() -> void:
 	add_to_group("combat_target")
 	health = max_health
+	defeated = false
 	health_changed.emit(health, max_health)
 
 func _physics_process(delta: float) -> void:
+	if defeated:
+		velocity = Vector2.ZERO
+		move_and_slide()
+		_update_visuals()
+		return
+
 	for move_name: String in cooldowns.keys():
 		cooldowns[move_name] = max(0.0, float(cooldowns[move_name]) - delta)
 
@@ -152,10 +160,10 @@ func _process_attack(delta: float) -> void:
 
 func _check_attack_hits() -> void:
 	for area: Area2D in attack_hitbox.get_overlapping_areas():
-		if area == null or area.name != "Hurtbox":
+		if area == null or (not area.is_in_group("hurtbox") and not area.has_method("take_hit")):
 			continue
-		var target := area.get_parent()
-		if target == null or not target.has_method("take_hit"):
+		var target := _resolve_damage_target(area)
+		if target == null:
 			continue
 		var target_id := target.get_instance_id()
 		if hit_registry.has(target_id):
@@ -169,6 +177,14 @@ func _check_attack_hits() -> void:
 		}
 		if target.take_hit(hit_info):
 			hit_registry[target_id] = true
+
+func _resolve_damage_target(from_node: Node) -> Node:
+	var cursor: Node = from_node
+	while cursor != null:
+		if cursor != self and cursor.has_method("take_hit"):
+			return cursor
+		cursor = cursor.get_parent()
+	return null
 
 func _position_attack_hitbox() -> void:
 	if current_attack == "":
@@ -194,6 +210,9 @@ func _update_facing_from_target() -> void:
 func _update_visuals() -> void:
 	if absf(facing.x) > 0.1:
 		body.scale.x = signf(facing.x)
+	if defeated:
+		body.color = Color(0.3, 0.3, 0.3, 1.0)
+		return
 	body.color = Color(0.2, 0.47, 0.74, 1.0) if state != CombatState.BLOCK else Color(0.4, 0.8, 1.0, 1.0)
 
 func get_state_label() -> String:
@@ -213,6 +232,7 @@ func reset_for_round(spawn_position: Vector2) -> void:
 	global_position = spawn_position
 	velocity = Vector2.ZERO
 	facing = Vector2.RIGHT
+	defeated = false
 	state = CombatState.IDLE
 	current_attack = ""
 	attack_phase = ""
@@ -223,3 +243,17 @@ func reset_for_round(spawn_position: Vector2) -> void:
 	attack_hitbox.monitorable = false
 	health = max_health
 	health_changed.emit(health, max_health)
+
+func take_hit(hit_data: Dictionary) -> bool:
+	if defeated:
+		return false
+	var damage := int(hit_data.get("damage", 0))
+	if state == CombatState.BLOCK:
+		damage = int(roundi(float(damage) * 0.4))
+	health = max(0, health - damage)
+	health_changed.emit(health, max_health)
+	if health == 0:
+		defeated = true
+		velocity = Vector2.ZERO
+		state = CombatState.IDLE
+	return true
