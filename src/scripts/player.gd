@@ -65,6 +65,7 @@ var hit_registry: Dictionary = {}
 @onready var attack_shape: CollisionShape2D = $AttackHitbox/CollisionShape2D
 
 func _ready() -> void:
+	add_to_group("combat_target")
 	health = max_health
 	health_changed.emit(health, max_health)
 
