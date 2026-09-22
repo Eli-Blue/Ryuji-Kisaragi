@@ -62,6 +62,7 @@ var cooldowns := {
 var hit_registry: Dictionary = {}
 
 @onready var body: Polygon2D = $Body
+@onready var pants: Polygon2D = $Pants
 @onready var attack_hitbox: Area2D = $AttackHitbox
 @onready var attack_shape: CollisionShape2D = $AttackHitbox/CollisionShape2D
 
@@ -216,8 +217,10 @@ func _update_visuals() -> void:
 	body.scale = Vector2(facing_sign, 1.0)
 	if defeated:
 		body.color = Color(0.3, 0.3, 0.3, 1.0)
+		pants.color = Color(0.24, 0.24, 0.24, 1.0)
 		return
-	body.color = Color(0.2, 0.47, 0.74, 1.0) if state != CombatState.BLOCK else Color(0.4, 0.8, 1.0, 1.0)
+	body.color = Color(0.764706, 0.709804, 0.631373, 1.0) if state != CombatState.BLOCK else Color(0.858824, 0.811765, 0.741176, 1.0)
+	pants.color = Color(0.188235, 0.180392, 0.176471, 1.0) if state != CombatState.BLOCK else Color(0.282353, 0.266667, 0.258824, 1.0)
 
 func _facing_sign() -> float:
 	return 1.0 if facing.x >= 0.0 else -1.0

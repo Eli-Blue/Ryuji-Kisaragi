@@ -14,8 +14,16 @@ collision_layer = 1
 collision_mask = 0
 
 [node name="Body" type="Polygon2D" parent="."]
-color = Color(0.247059, 0.584314, 0.890196, 1)
-polygon = PackedVector2Array(-14, -24, 16, -16, 12, 24, -18, 20)
+color = Color(0.764706, 0.709804, 0.631373, 1)
+polygon = PackedVector2Array(-12, -24, 14, -22, 16, -8, 12, 0, 12, 24, -12, 24, -14, 0, -18, -10)
+
+[node name="Pants" type="Polygon2D" parent="."]
+color = Color(0.188235, 0.180392, 0.176471, 1)
+polygon = PackedVector2Array(-12, 0, 12, 0, 18, 30, 10, 32, 6, 52, -6, 52, -10, 32, -18, 30)
+
+[node name="Belt" type="Polygon2D" parent="."]
+color = Color(0.117647, 0.0941176, 0.0823529, 1)
+polygon = PackedVector2Array(-14, 0, 15, 0, 14, 6, -13, 6)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jno8n")

@@ -48,6 +48,15 @@ godot4 --path .
 - Minimal HUD with health bars, status feedback, and control reminder.
 - Procedural/vector-style visuals only (no external copyrighted assets).
 
+## Visual Direction References
+
+- Reference image (user-provided): `https://github.com/user-attachments/assets/30f16b8b-1062-4bcb-934a-7c61b16e156d`
+- Additional user-provided references:
+  - `https://github.com/user-attachments/assets/5f5718a9-55d4-4323-87b3-ffb56bc46aa8`
+  - `https://github.com/user-attachments/assets/d2459a2d-a3c7-4f82-b4fd-14fdcf4776f5`
+
+These are used as style direction only; no external image files are bundled in the repository.
+
 ## License
 
 This repository remains licensed under the included **Apache License 2.0** (`LICENSE`).
