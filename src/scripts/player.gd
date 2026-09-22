@@ -191,7 +191,7 @@ func _position_attack_hitbox() -> void:
 	if current_attack == "":
 		return
 	var profile: Dictionary = ATTACKS[current_attack]
-	var attack_offset: Vector2 = facing.normalized() * float(profile["range"])
+	var attack_offset := Vector2(_facing_sign() * float(profile["range"]), 0.0)
 	attack_shape.position = attack_offset
 
 func _update_facing_from_target() -> void:
@@ -209,12 +209,15 @@ func _update_facing_from_target() -> void:
 		facing = closest_direction
 
 func _update_visuals() -> void:
-	if absf(facing.x) > 0.1:
-		body.scale.x = signf(facing.x)
+	var facing_sign := _facing_sign()
+	body.scale.x = facing_sign
 	if defeated:
 		body.color = Color(0.3, 0.3, 0.3, 1.0)
 		return
 	body.color = Color(0.2, 0.47, 0.74, 1.0) if state != CombatState.BLOCK else Color(0.4, 0.8, 1.0, 1.0)
+
+func _facing_sign() -> float:
+	return 1.0 if facing.x >= 0.0 else -1.0
 
 func get_state_label() -> String:
 	if state == CombatState.ATTACK and current_attack != "":
@@ -244,7 +247,7 @@ func reset_for_round(spawn_position: Vector2) -> void:
 		cooldowns[move_name] = 0.0
 	attack_hitbox.monitoring = false
 	attack_hitbox.monitorable = false
-	attack_shape.position = facing.normalized() * float(ATTACKS["light"]["range"])
+	attack_shape.position = Vector2(_facing_sign() * float(ATTACKS["light"]["range"]), 0.0)
 	health = max_health
 	health_changed.emit(health, max_health)
 
