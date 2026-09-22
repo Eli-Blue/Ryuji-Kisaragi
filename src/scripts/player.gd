@@ -237,6 +237,7 @@ func reset_for_round(spawn_position: Vector2) -> void:
 	current_attack = ""
 	attack_phase = ""
 	attack_timer = 0.0
+	hit_registry.clear()
 	for move_name: String in cooldowns.keys():
 		cooldowns[move_name] = 0.0
 	attack_hitbox.monitoring = false
@@ -248,7 +249,12 @@ func take_hit(hit_data: Dictionary) -> bool:
 	if defeated:
 		return false
 	var damage := int(hit_data.get("damage", 0))
-	if state == CombatState.BLOCK:
+	var knockback := hit_data.get("knockback", Vector2.ZERO) as Vector2
+	var is_guarding_front := false
+	if knockback.length() > 0.0 and facing.length() > 0.0:
+		var approach_dot := knockback.normalized().dot(facing.normalized())
+		is_guarding_front = approach_dot < -0.1
+	if state == CombatState.BLOCK and is_guarding_front:
 		damage = int(roundi(float(damage) * 0.4))
 	health = max(0, health - damage)
 	health_changed.emit(health, max_health)
