@@ -46,6 +46,7 @@ func _on_dummy_health_changed(current: int, maximum: int) -> void:
 
 func _on_dummy_defeated_changed(is_defeated: bool) -> void:
 	if is_defeated:
+		status_lock_timer = 0.0
 		status_label.text = "Dummy down. Press R to reset and drill again."
 
 func reset_round() -> void:

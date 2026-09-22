@@ -82,15 +82,15 @@ func _physics_process(delta: float) -> void:
 	_update_visuals()
 
 func _process_movement_and_inputs() -> void:
-	if Input.is_action_just_pressed("attack_light"):
-		_try_start_attack("light")
-		return
-	if Input.is_action_just_pressed("attack_elbow"):
-		_try_start_attack("elbow")
-		return
-	if Input.is_action_just_pressed("grapple_throw"):
-		_try_start_attack("grapple")
-		return
+	var attack_inputs := {
+		"attack_light": "light",
+		"attack_elbow": "elbow",
+		"grapple_throw": "grapple"
+	}
+	for action_name: String in attack_inputs.keys():
+		if Input.is_action_just_pressed(action_name):
+			_try_start_attack(attack_inputs[action_name])
+			return
 
 	var move_input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if move_input.length() > 0.1:
@@ -109,6 +109,7 @@ func _try_start_attack(attack_name: String) -> void:
 	if cooldowns.get(attack_name, 0.0) > 0.0:
 		return
 
+	_update_facing_from_target()
 	state = CombatState.ATTACK
 	current_attack = attack_name
 	attack_phase = "windup"
@@ -174,6 +175,20 @@ func _position_attack_hitbox() -> void:
 	var profile: Dictionary = ATTACKS[current_attack]
 	var attack_offset: Vector2 = facing.normalized() * float(profile["range"])
 	attack_shape.position = attack_offset
+
+func _update_facing_from_target() -> void:
+	var closest_distance := INF
+	var closest_direction := Vector2.ZERO
+	for target: Node in get_tree().get_nodes_in_group("combat_target"):
+		if target == self or not target is Node2D:
+			continue
+		var offset := (target as Node2D).global_position - global_position
+		var distance := offset.length()
+		if distance < closest_distance and distance > 0.0:
+			closest_distance = distance
+			closest_direction = offset / distance
+	if closest_direction != Vector2.ZERO:
+		facing = closest_direction
 
 func _update_visuals() -> void:
 	if absf(facing.x) > 0.1:

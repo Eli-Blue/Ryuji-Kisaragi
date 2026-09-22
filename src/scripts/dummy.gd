@@ -12,6 +12,7 @@ var flash_timer := 0.0
 @onready var body: Polygon2D = $Body
 
 func _ready() -> void:
+	add_to_group("combat_target")
 	health = max_health
 	defeated = false
 	health_changed.emit(health, max_health)
