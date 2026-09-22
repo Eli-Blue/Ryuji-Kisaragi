@@ -146,7 +146,7 @@ func _process_attack(delta: float) -> void:
 
 func _check_attack_hits() -> void:
 	for area: Area2D in attack_hitbox.get_overlapping_areas():
-		if area == null:
+		if area == null or area.name != "Hurtbox":
 			continue
 		var target := area.get_parent()
 		if target == null or not target.has_method("take_hit"):

@@ -22,11 +22,13 @@ Godot 4.7.2 playable prototype for **Ryuji Kisaragi**, a hybrid Bajiquan and Shu
 
 ### From Command Line
 
+From the repository root:
+
 ```bash
-godot4 --path /home/runner/work/Ryuji-Kisaragi/Ryuji-Kisaragi
+godot4 --path .
 ```
 
-(If your binary name is `godot`, use `godot --path /home/runner/work/Ryuji-Kisaragi/Ryuji-Kisaragi`.)
+(If your binary name is `godot`, use `godot --path .`.)
 
 ## Controls
 
