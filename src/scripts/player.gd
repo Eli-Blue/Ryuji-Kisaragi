@@ -196,6 +196,7 @@ func get_state_label() -> String:
 func reset_for_round(spawn_position: Vector2) -> void:
 	global_position = spawn_position
 	velocity = Vector2.ZERO
+	facing = Vector2.RIGHT
 	state = CombatState.IDLE
 	current_attack = ""
 	attack_phase = ""

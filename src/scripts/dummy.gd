@@ -24,9 +24,9 @@ func _physics_process(delta: float) -> void:
 
 	if not defeated:
 		velocity = velocity.move_toward(Vector2.ZERO, 1200.0 * delta)
-		move_and_slide()
 	else:
 		velocity = Vector2.ZERO
+	move_and_slide()
 
 func take_hit(hit_data: Dictionary) -> bool:
 	if defeated:
