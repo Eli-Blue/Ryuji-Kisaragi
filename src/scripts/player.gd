@@ -208,6 +208,8 @@ func _update_facing_from_target() -> void:
 	if closest_direction != Vector2.ZERO:
 		if absf(closest_direction.x) > 0.01:
 			facing = Vector2(signf(closest_direction.x), 0.0)
+		else:
+			facing = Vector2.RIGHT
 
 func _update_visuals() -> void:
 	var facing_sign := _facing_sign()
@@ -262,7 +264,7 @@ func take_hit(hit_data: Dictionary) -> bool:
 	if knockback.length() > 0.0 and facing.length() > 0.0:
 		var attack_travel_direction := knockback.normalized()
 		var approach_dot := facing.normalized().dot(attack_travel_direction)
-		is_guarding_front = approach_dot > 0.1
+		is_guarding_front = approach_dot < -0.1
 	if was_blocking and is_guarding_front:
 		damage = int(roundi(float(damage) * 0.4))
 		velocity = knockback * 0.35
