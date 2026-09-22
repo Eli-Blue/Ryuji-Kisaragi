@@ -252,6 +252,19 @@ func reset_for_round(spawn_position: Vector2) -> void:
 func take_hit(hit_data: Dictionary) -> bool:
 	if defeated:
 		return false
+	var was_blocking := state == CombatState.BLOCK or Input.is_action_pressed("block")
+	var damage := int(hit_data.get("damage", 0))
+	var knockback := hit_data.get("knockback", Vector2.ZERO) as Vector2
+	var is_guarding_front := false
+	if knockback.length() > 0.0 and facing.length() > 0.0:
+		var incoming_direction := -knockback.normalized()
+		var approach_dot := facing.normalized().dot(incoming_direction)
+		is_guarding_front = approach_dot > 0.1
+	if was_blocking and is_guarding_front:
+		damage = int(roundi(float(damage) * 0.4))
+		velocity = knockback * 0.35
+	else:
+		velocity = knockback
 
 	if state == CombatState.ATTACK:
 		current_attack = ""
@@ -262,18 +275,6 @@ func take_hit(hit_data: Dictionary) -> bool:
 		hit_registry.clear()
 		state = CombatState.IDLE
 
-	var damage := int(hit_data.get("damage", 0))
-	var knockback := hit_data.get("knockback", Vector2.ZERO) as Vector2
-	var is_guarding_front := false
-	if knockback.length() > 0.0 and facing.length() > 0.0:
-		var incoming_direction := -knockback.normalized()
-		var approach_dot := facing.normalized().dot(incoming_direction)
-		is_guarding_front = approach_dot > 0.1
-	if state == CombatState.BLOCK and is_guarding_front:
-		damage = int(roundi(float(damage) * 0.4))
-		velocity = knockback * 0.35
-	else:
-		velocity = knockback
 	health = max(0, health - damage)
 	health_changed.emit(health, max_health)
 	if health == 0:
