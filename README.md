@@ -30,6 +30,35 @@ godot4 --path .
 
 (If your binary name is `godot`, use `godot --path .`.)
 
+## Deploy to Azure Static Web Apps (#1)
+
+This repository includes a GitHub Actions workflow that exports the Godot project for Web and deploys it to **Azure Static Web Apps**.
+
+### 1) Create Azure Static Web App
+
+1. In Azure Portal, create a new **Static Web App**.
+2. Use any temporary build preset during creation (the repository workflow handles actual build/deploy).
+3. Copy the deployment token from your Static Web App.
+
+### 2) Configure GitHub Secret
+
+In your GitHub repository settings, add this secret:
+
+- `AZURE_STATIC_WEB_APPS_API_TOKEN` = your Azure Static Web Apps deployment token
+
+### 3) Trigger Deployment
+
+- The workflow file is at:
+  - `/home/runner/work/Ryuji-Kisaragi/Ryuji-Kisaragi/.github/workflows/azure-static-web-apps.yml`
+- It runs automatically on pushes to `main`, or manually via **Actions → Build and Deploy Godot Web to Azure Static Web Apps → Run workflow**.
+
+### 4) Web Export Details
+
+- Godot Web export preset is defined in:
+  - `/home/runner/work/Ryuji-Kisaragi/Ryuji-Kisaragi/export_presets.cfg`
+- Export output path:
+  - `build/web/index.html`
+
 ## Controls
 
 - `W A S D` - Move / footwork
